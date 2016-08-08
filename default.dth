@@ -1,0 +1,38 @@
+create do_loop_index 0 ,
+create do_loop_count 0 ,
+
+: do
+ do_loop_index !
+ do_loop_count !
+ begin
+;
+
+: loop
+ do_loop_index @ 1 + dup do_loop_index !
+ do_loop_count @ 1 -
+ > until
+;
+
+: i
+ do_loop_index @
+;
+
+: 2dup
+ dup dup
+;
+
+: 2/
+ 2 /
+;
+
+: 2*
+ 2 *
+;
+
+: clean_stack
+ depth dup
+ 0 = if
+ else
+  0 do drop loop
+ then
+;
